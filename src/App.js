@@ -15,7 +15,7 @@ export default class App extends Component {
   }
 
  async getOptions(){
-    const res = await axios.get('https://rocky-depths-80035.herokuapp.com/college/DCU')
+    const res = await axios.get('http://localhost:8080/college/DCU')
     const data = res.data
 
     const options = data.map(d => ({
@@ -29,7 +29,7 @@ export default class App extends Component {
   }
 
   async getOptions2(requestVar){
-      const res = await axios.get('https://rocky-depths-80035.herokuapp.com/college/' + requestVar)
+      const res = await axios.get('http://localhost:8080/college/' + requestVar)
       const data = res.data
 
       const options = data.map(d => ({
