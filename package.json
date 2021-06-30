@@ -13,7 +13,7 @@
     "react-select": "^4.3.1",
     "web-vitals": "^1.1.2"
   },
-   "engines": {
+  "engines": {
     "node": "14.16.1"
   },
   "scripts": {
@@ -21,6 +21,17 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "@types/styled-components": "^5.1.9",
+    "css-loader": "^5.2.4",
+    "html-webpack-plugin": "^4.5.2",
+    "style-loader": "^2.0.0",
+    "ts-loader": "^6.2.2",
+    "typescript": "^4.2.4",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "eslintConfig": {
     "extends": [

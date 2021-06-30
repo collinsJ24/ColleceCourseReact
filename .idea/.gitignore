@@ -1,7 +1,7 @@
 # Default ignored files
 /shelf/
 /workspace.xml
-/node_modules
+**/node_modules
 npm-debug.log
 .DS_Store
 /*.env
