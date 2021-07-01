@@ -9,42 +9,43 @@ export default class App extends Component {
     super(props)
     this.state = {
       selectOptions : [],
-      course_code: '',
-      course_name: ''
+      name: '',
+      college_courses: [],
+      course_name:'',
+      course_code:''
     }
   }
 
  async getOptions(){
-    const res = await axios.get('https://rocky-depths-80035.herokuapp.com/college/DCU')
+    const res = await axios.get('https://rocky-depths-80035.herokuapp.com/college/colleges')
     const data = res.data
 
     const options = data.map(d => ({
-      "value" : d.course_name,
-      "label" : d.course_code
-
+      "label" : d.name
     }))
 
     this.setState({selectOptions: options})
 
   }
 
-  async getOptions2(requestVar){
-      const res = await axios.get('https://rocky-depths-80035.herokuapp.com/college/' + requestVar)
+  async getcollegeCourses(collegeID){
+      const res = await axios.get('https://rocky-depths-80035.herokuapp.com/college/' + collegeID)
       const data = res.data
-
-      const options = data.map(d => ({
-        "value" : d.email,
-        "label" : d.userId
-
+      const courses = data.map(d => ({
+         "value" : d.course_name,
+         "label" : d.course_code
       }))
 
-      this.setState({selectOptions: options})
-
+      this.setState({college_courses: courses})
     }
 
   handleChange(e){
-   this.setState({course_code:e.value, course_name:e.label})
-   this.getOptions2("test")
+   this.setState({name:e.label})
+   this.getcollegeCourses(e.label)
+  }
+
+  handleCourseChange(e){
+  this.setState({course_name:e.value})
   }
 
   componentDidMount(){
@@ -53,11 +54,18 @@ export default class App extends Component {
 
   render() {
     console.log(this.state.selectOptions)
+    console.log(this.state.college_courses)
     return (
-      <div >
+     <>
+      <div>
         <Select className="dropdown" options={this.state.selectOptions} onChange={this.handleChange.bind(this)} />
-    <p>You have selected <strong>{this.state.course_code}</strong> whose id is <strong>{this.state.course_name}</strong></p>
+    <p>You have selected College: <strong>{this.state.name}</strong></p>
       </div>
+      <div>
+       <Select className="dropdown" options={this.state.college_courses} onChange={this.handleCourseChange.bind(this)}/>
+       <p>You have selected Course: <strong>{this.state.course_name}</strong></p>
+       </div>
+       </>
     )
   }
 }
